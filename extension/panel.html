@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="panel.css" />
+    </head>
+    <body>
+        <div class="head">
+            <button id="inspect" title="Inspect an element in the editor">&#9678;</button>
+            <select id="picker" title="Editor instance"></select>
+            <button id="refresh" title="Refresh">&#8635;</button>
+            <button id="jsonToggle" title="Toggle raw Content Model JSON">{ }</button>
+            <span id="status"></span>
+        </div>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="model">Model</button>
+            <button class="tab-btn" data-tab="events">Events</button>
+            <button class="tab-btn" data-tab="selection">Selection</button>
+            <button class="tab-btn" data-tab="formatState">Format State</button>
+            <button class="tab-btn" data-tab="html">HTML</button>
+            <button class="tab-btn" data-tab="snapshots">Snapshots</button>
+        </div>
+        <div id="tree" class="tree tab-panel active" data-tab-panel="model"></div>
+        <div id="events" class="tab-panel" data-tab-panel="events">
+            <div class="events-toolbar">
+                Show item count:
+                <select id="eventsCount">
+                    <option value="0">Disabled</option>
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <button id="eventsClear">Clear all</button>
+            </div>
+            <div id="eventsList" class="events-list"></div>
+        </div>
+        <div id="selection" class="tab-panel" data-tab-panel="selection"></div>
+        <div id="formatState" class="tab-panel" data-tab-panel="formatState">
+            <div class="events-toolbar">
+                <label><input type="checkbox" id="darkModeToggle" /> Dark mode</label>
+                <button id="focusBtn" title="editor.focus()">Focus</button>
+            </div>
+            <div id="formatStateBody"></div>
+        </div>
+        <pre id="html" class="tab-panel code-view" data-tab-panel="html"></pre>
+        <div id="snapshots" class="tab-panel" data-tab-panel="snapshots">
+            <div class="events-toolbar">
+                <button id="snapshotsRefresh" title="Re-walk the snapshot stack (editor.getSnapshotsManager())">&#8635; Refresh</button>
+                <button id="undoBtn" title="Undo (editor.restoreSnapshot)">&#8630; Undo</button>
+                <button id="redoBtn" title="Redo (editor.restoreSnapshot)">&#8631; Redo</button>
+                <button id="takeSnapshotBtn" title="editor.takeSnapshot()">Take Snapshot</button>
+            </div>
+            <div id="snapshotList" class="snapshot-list"></div>
+            <div class="snapshot-paste">
+                <h4>Apply custom HTML as new content</h4>
+                <div class="snapshot-paste-hint">
+                    Calls editor.restoreSnapshot() directly - replaces the editor's content, but does
+                    not by itself add an undo checkpoint. Click Take Snapshot after if you want one.
+                    Paste text copied with the Copy button above (HTML + a trailing
+                    &lt;!--{...}--&gt; comment) to also restore its selection/dark mode/logical
+                    root - plain HTML with no comment works too.
+                </div>
+                <textarea id="snapshotHtmlInput" class="textarea" spellcheck="false" placeholder="Paste or type HTML…"></textarea>
+                <button id="applyHtmlBtn">Apply as New Content</button>
+            </div>
+        </div>
+        <script src="panel.js"></script>
+    </body>
+</html>

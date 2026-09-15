@@ -1,0 +1,19 @@
+{
+    "name": "roosterjs-devtools",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Chrome DevTools extension (and standalone console script) for inspecting the Content Model of RoosterJS editors on any page.",
+    "keywords": [
+        "roosterjs",
+        "devtools",
+        "chrome-extension",
+        "rich-text-editor"
+    ],
+    "scripts": {
+        "test": "node test/run-e2e.js",
+        "test:e2e": "node test/run-e2e.js"
+    },
+    "dependencies": {
+        "ws": "^8.18.0"
+    }
+}
